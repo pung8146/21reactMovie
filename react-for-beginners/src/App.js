@@ -1,34 +1,19 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 
-function App () {
+function App() {
     const [loading, setLoading] = useState(true);
-    const [coin , setCoin] = useState([])
-    const [money,setMoney] = useState(0);
-    const [coinValue,setCoinValue] = useState(0);
-    const onChange = (event) => setMoney(event.target.value)
-    const coinChange = (event) => setCoinValue(event.target.value)
-    useEffect(() => {
-        fetch("https://api.coinpaprika.com/v1/tickers")
+    useEffect (() => {
+        fetch(
+            `https://yts.mx/api/v2/list_movies.json?minimum_rating=9.5&sort_by=year`
+        )
         .then((response) => response.json())
-        .then(json => {
-            setCoin(json);})
-            setLoading(false);
-    }, [])
+        .then((json) => console.log(json));
+    }, []);
     return (
-    <div>
-        <h1>The Coins! ({coin.length})</h1>
-        {loading ? <strong>This loading...</strong> : null}
-        <form>
-            <input onChange={onChange} value={money} placeholder="Your have money" type="number"  />    
-        <br />
-        <select onChange={coinChange}>
-            <option>Select Coin !!</option>
-            {coin.map((coin) => <option value={coin.quotes.USD.price}>{coin.name} ({coin.symbol}): ${coin.quotes.USD.price}</option>)}
-        </select>
-        <br />
-            <input disabled="true" placeholder="Coin" value={ money / coinValue } type="number" />
-        </form>
-    </div>
+        <div>
+            <h1>This Movie App</h1>
+            {loading ? <h2>Page Loading... </h2>: null}
+        </div>
     )
 }
 
