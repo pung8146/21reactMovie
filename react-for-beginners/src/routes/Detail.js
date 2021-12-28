@@ -10,7 +10,6 @@ function Detail() {
     useEffect(() => {
         getMovie();
     }, []);
-    console.log(id);
     return <h1>Detail</h1>
 }
 
